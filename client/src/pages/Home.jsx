@@ -1,297 +1,229 @@
+import { Link } from 'react-router-dom'
+import Motion from '../components/Motion'
+
 function Home() {
   return (
     <div className="font-sans text-gray-800">
       {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="home" className="relative pt-32 pb-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                TRANSFORM YOUR <span className="text-orange-500">BODY</span>
+            <Motion type="slideInLeft" className="opacity-0">
+              <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+                TRANSFORM YOUR
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500"> BODY</span>
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 Join the best gym in town and achieve your fitness goals with our expert trainers and state-of-the-art equipment.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold text-lg transition-all hover:scale-105">
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                <Link to="/pricing" className="group bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-orange-500/30">
                   Get Started
-                </button>
-                <button className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-3 rounded-full font-semibold text-lg transition-all">
+                  <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+                <Link to="/about" className="group border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-10 py-4 rounded-full font-semibold text-lg transition-all">
                   Learn More
-                </button>
+                </Link>
               </div>
-              <div className="mt-12 flex items-center gap-8">
-                <div>
-                  <h3 className="text-4xl font-bold text-orange-500">5000+</h3>
-                  <p className="text-gray-400">Active Members</p>
-                </div>
-                <div>
-                  <h3 className="text-4xl font-bold text-orange-500">50+</h3>
-                  <p className="text-gray-400">Expert Trainers</p>
-                </div>
-                <div>
-                  <h3 className="text-4xl font-bold text-orange-500">15+</h3>
-                  <p className="text-gray-400">Years Experience</p>
+              <div className="grid grid-cols-3 gap-8">
+                {[
+                  { number: '5K+', label: 'Active Members' },
+                  { number: '50+', label: 'Expert Trainers' },
+                  { number: '15+', label: 'Years Experience' }
+                ].map((stat, idx) => (
+                  <div key={idx} className="text-center">
+                    <h3 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">{stat.number}</h3>
+                    <p className="text-gray-400 mt-2">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </Motion>
+            <Motion type="slideInRight" delay={0.3} className="opacity-0">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-3xl blur-2xl opacity-50 animate-pulse-subtle"></div>
+                <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-1">
+                  <div className="bg-slate-900 rounded-[22px] p-6">
+                    <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=professional%20fitness%20model%20working%20out%20in%20modern%20gym%20with%20weights%20and%20equipment%20high%20quality%208k%20photo&image_size=square_hd" alt="Fitness" className="rounded-2xl w-full h-auto" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl p-1">
-                <div className="bg-gray-900 rounded-3xl p-8">
-                  <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=professional%20fitness%20model%20working%20out%20in%20modern%20gym%20with%20weights%20and%20equipment&image_size=square_hd" alt="Fitness" className="rounded-2xl w-full h-auto" />
-                </div>
-              </div>
-            </div>
+            </Motion>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
+      {/* Features Section */}
+      <section id="about" className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">About Us</h2>
+          <Motion type="fadeIn" className="text-center mb-16 opacity-0">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We are committed to helping you achieve your fitness goals with passion and dedication.
             </p>
-          </div>
+          </Motion>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Modern Equipment</h3>
-              <p className="text-gray-600">
-                State-of-the-art equipment for all your fitness needs.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Expert Trainers</h3>
-              <p className="text-gray-600">
-                Professional trainers to guide you every step of the way.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Flexible Hours</h3>
-              <p className="text-gray-600">
-                Open 24/7 to fit your busy schedule.
-              </p>
-            </div>
+            {[
+              { 
+                icon: '⚡', 
+                title: 'Modern Equipment', 
+                desc: 'State-of-the-art equipment for all your fitness needs, from free weights to cardio machines.' 
+              },
+              { 
+                icon: '👥', 
+                title: 'Expert Trainers', 
+                desc: 'Professional certified trainers to guide you every step of the way with personalized programs.' 
+              },
+              { 
+                icon: '⏰', 
+                title: 'Flexible Hours', 
+                desc: 'Open 24/7 to fit your busy schedule, so you can work out whenever is best for you.' 
+              }
+            ].map((feature, idx) => (
+              <Motion key={idx} type="fadeIn" delay={idx * 0.2} className="opacity-0">
+                <div className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 border border-slate-100">
+                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <span className="text-4xl">{feature.icon}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                </div>
+              </Motion>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      {/* Services Preview */}
+      <section id="services" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+          <Motion type="fadeIn" className="text-center mb-16 opacity-0">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Services</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We offer a wide range of fitness services to help you reach your goals.
             </p>
-          </div>
+          </Motion>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'Strength Training', desc: 'Build muscle and increase strength with our expert-led strength training programs.', icon: '💪' },
-              { title: 'Cardio', desc: 'Improve your cardiovascular health with high-energy cardio workouts.', icon: '🏃' },
-              { title: 'Yoga', desc: 'Find your inner peace and improve flexibility with our yoga classes.', icon: '🧘' },
-              { title: 'Personal Training', desc: 'Get one-on-one guidance from our certified personal trainers.', icon: '👤' },
-              { title: 'Nutrition Planning', desc: 'Custom nutrition plans to complement your fitness routine.', icon: '🥗' },
-              { title: 'Group Classes', desc: 'Join our fun and motivating group fitness classes.', icon: '👥' },
-              { title: 'Boxing', desc: 'Learn boxing techniques while getting an intense workout.', icon: '🥊' },
-              { title: 'Spinning', desc: 'High-intensity indoor cycling classes.', icon: '🚴' },
+              { title: 'Strength Training', desc: 'Build muscle and increase strength', icon: '💪', color: 'from-blue-500 to-blue-600' },
+              { title: 'Cardio', desc: 'Improve your cardiovascular health', icon: '🏃', color: 'from-green-500 to-green-600' },
+              { title: 'Yoga', desc: 'Find your inner peace and flexibility', icon: '🧘', color: 'from-purple-500 to-purple-600' },
+              { title: 'Personal Training', desc: 'One-on-one guidance from pros', icon: '👤', color: 'from-orange-500 to-red-600' }
             ].map((service, index) => (
-              <div key={index} className="bg-gray-50 p-6 rounded-2xl hover:bg-orange-50 transition-colors group">
-                <div className="text-5xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600">{service.title}</h3>
-                <p className="text-gray-600">{service.desc}</p>
-              </div>
+              <Motion key={index} type="fadeIn" delay={index * 0.15} className="opacity-0">
+                <div className="group bg-gradient-to-br from-slate-50 to-slate-100 p-8 rounded-3xl hover:from-orange-50 hover:to-orange-100 transition-all hover:-translate-y-1 cursor-pointer">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <span className="text-3xl">{service.icon}</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">{service.title}</h3>
+                  <p className="text-gray-600">{service.desc}</p>
+                </div>
+              </Motion>
             ))}
           </div>
+          <Motion type="fadeIn" delay={0.6} className="text-center mt-12 opacity-0">
+            <Link to="/services" className="inline-flex items-center bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all hover:scale-105 shadow-lg shadow-orange-500/30">
+              View All Services
+              <span className="ml-2">→</span>
+            </Link>
+          </Motion>
         </div>
       </section>
 
-      {/* Trainers Section */}
-      <section id="trainers" className="py-20 bg-gray-900">
+      {/* Trainers Preview */}
+      <section id="trainers" className="py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Our Trainers</h2>
+          <Motion type="fadeIn" className="text-center mb-16 opacity-0">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Meet Our Trainers</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Meet our team of expert trainers who are here to help you succeed.
             </p>
-          </div>
+          </Motion>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'John Smith', role: 'Head Trainer', specialty: 'Strength & Conditioning' },
-              { name: 'Sarah Johnson', role: 'Yoga Instructor', specialty: 'Yoga & Pilates' },
-              { name: 'Mike Chen', role: 'Personal Trainer', specialty: 'Weight Loss' },
+              { name: 'John Smith', role: 'Head Trainer', specialty: 'Strength & Conditioning', img: 'john' },
+              { name: 'Sarah Johnson', role: 'Yoga Instructor', specialty: 'Yoga & Pilates', img: 'sarah' },
+              { name: 'Mike Chen', role: 'Personal Trainer', specialty: 'Weight Loss', img: 'mike' }
             ].map((trainer, index) => (
-              <div key={index} className="bg-gray-800 rounded-2xl overflow-hidden group">
-                <img src={`https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=professional%20fitness%20trainer%20portrait%20${encodeURIComponent(trainer.name)}&image_size=square_hd`} alt={trainer.name} className="w-full h-80 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white">{trainer.name}</h3>
-                  <p className="text-orange-500 font-semibold">{trainer.role}</p>
-                  <p className="text-gray-400 mt-2">{trainer.specialty}</p>
+              <Motion key={index} type="fadeIn" delay={index * 0.2} className="opacity-0">
+                <div className="group bg-slate-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all">
+                  <div className="relative overflow-hidden">
+                    <img src={`https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=professional%20fitness%20trainer%20portrait%20${trainer.img}%20high%20quality&image_size=square_hd`} alt={trainer.name} className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-white mb-1">{trainer.name}</h3>
+                    <p className="text-orange-400 font-semibold mb-2">{trainer.role}</p>
+                    <p className="text-gray-400">{trainer.specialty}</p>
+                  </div>
                 </div>
-              </div>
+              </Motion>
             ))}
           </div>
+          <Motion type="fadeIn" delay={0.6} className="text-center mt-12 opacity-0">
+            <Link to="/trainers" className="inline-flex items-center border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-10 py-4 rounded-full font-semibold text-lg transition-all">
+              See All Trainers
+              <span className="ml-2">→</span>
+            </Link>
+          </Motion>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Members Say</h2>
+          <Motion type="fadeIn" className="text-center mb-16 opacity-0">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">What Our Members Say</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from our satisfied members about their amazing fitness journey.
+              Don't just take our word for it — hear from our amazing members!
             </p>
-          </div>
+          </Motion>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Emily Davis', text: 'This gym has completely transformed my life! The trainers are amazing and the atmosphere is so motivating.', rating: 5 },
-              { name: 'David Wilson', text: 'Best gym I have ever been to! The equipment is top-notch and the staff is incredibly friendly.', rating: 5 },
-              { name: 'Jessica Brown', text: 'I have achieved results I never thought possible. Highly recommend to anyone looking to get fit!', rating: 5 },
+              { name: 'Emily Davis', text: 'This gym has completely transformed my life! The trainers are amazing and the atmosphere is so motivating.', rating: 5, avatar: 'E' },
+              { name: 'David Wilson', text: 'Best gym I have ever been to! The equipment is top-notch and the staff is incredibly friendly.', rating: 5, avatar: 'D' },
+              { name: 'Jessica Brown', text: 'I have achieved results I never thought possible. Highly recommend to anyone looking to get fit!', rating: 5, avatar: 'J' }
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg">
-                <div className="text-yellow-500 mb-4">{'⭐'.repeat(testimonial.rating)}</div>
-                <p className="text-gray-700 text-lg mb-6 italic">"{testimonial.text}"</p>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
-                    {testimonial.name[0]}
+              <Motion key={index} type="fadeIn" delay={index * 0.2} className="opacity-0">
+                <div className="bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
+                  <div className="flex text-yellow-500 text-2xl mb-6">
+                    {'⭐'.repeat(testimonial.rating)}
                   </div>
-                  <div className="ml-4">
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                  <p className="text-gray-700 text-lg mb-8 italic leading-relaxed">"{testimonial.text}"</p>
+                  <div className="flex items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                      {testimonial.avatar}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+                      <p className="text-gray-500">Happy Member</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Motion>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Pricing Plans</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect plan for your fitness journey.
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-orange-500 to-red-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Motion type="fadeIn" className="opacity-0">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Ready to Start Your Journey?</h2>
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+              Join today and get 20% off your first 3 months! Don't wait — your transformation starts now.
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: 'Basic', price: '$29', features: ['Access to gym equipment', 'Open gym hours', 'Free parking', 'Locker access' ] },
-              { name: 'Premium', price: '$49', features: ['All Basic features', 'Group classes', 'Nutrition planning', '1 personal training session/month'], popular: true },
-              { name: 'Elite', price: '$99', features: ['All Premium features', 'Unlimited personal training', '24/7 access', 'Guest passes'] },
-            ].map((plan, index) => (
-              <div key={index} className={`p-8 rounded-2xl shadow-lg ${plan.popular ? 'border-2 border-orange-500 bg-orange-50' : 'bg-gray-50'}`}>
-                {plan.popular && (
-                  <div className="bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold inline-block mb-4">MOST POPULAR</div>
-                )}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{plan.name}</h3>
-                <div className="mb-6">
-                  <span className="text-5xl font-bold text-gray-900">{plan.price}</span>
-                  <span className="text-gray-500">/month</span>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center text-gray-700">
-                      <svg className="w-5 h-5 text-orange-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <button className={`w-full py-3 rounded-full font-semibold transition-all hover:scale-105 ${plan.popular ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-gray-900 text-white hover:bg-gray-800'}`}>
-                  Get Started
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-6">Get In Touch</h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-white font-semibold">Location</h4>
-                    <p className="text-gray-400">123 Fitness Street, Gym City</p>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-white font-semibold">Phone</h4>
-                    <p className="text-gray-400">(123) 456-7890</p>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-white font-semibold">Email</h4>
-                    <p className="text-gray-400">info@grindgym.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white p-8 rounded-2xl">
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Name</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Your name" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Email</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Your email" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">Message</label>
-                  <textarea rows="4" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Your message"></textarea>
-                </div>
-                <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-all hover:scale-105">
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </div>
+            <Link to="/pricing" className="inline-flex items-center bg-white text-orange-600 hover:bg-slate-100 px-12 py-5 rounded-full font-bold text-xl transition-all hover:scale-105 shadow-2xl">
+              Get Started Now
+              <span className="ml-3">→</span>
+            </Link>
+          </Motion>
         </div>
       </section>
     </div>
