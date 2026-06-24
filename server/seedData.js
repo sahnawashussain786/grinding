@@ -1,6 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Trainer = require('./models/Trainer');
+const User = require('./models/User');
 
 const seedTrainers = [
   {
@@ -54,10 +55,24 @@ const seedDB = async () => {
 
     // Clear existing data
     await Trainer.deleteMany({});
+    await User.deleteMany({});
 
     // Insert seed data
     await Trainer.insertMany(seedTrainers);
+
+    // Create admin user
+    const adminUser = new User({
+      name: 'Admin',
+      email: 'admin@grindgym.com',
+      password: 'admin123',
+      role: 'admin'
+    });
+    await adminUser.save();
+
     console.log('Seed data added successfully!');
+    console.log('Admin user created:');
+    console.log('Email: admin@grindgym.com');
+    console.log('Password: admin123');
 
     process.exit(0);
   } catch (err) {

@@ -18,6 +18,7 @@ function AdminTrainers() {
       try {
         const res = await getTrainers();
         setTrainers(res.data);
+      // eslint-disable-next-line no-unused-vars
       } catch (err) {
         setError('Failed to fetch trainers');
       } finally {
@@ -38,6 +39,7 @@ function AdminTrainers() {
         setTrainers([...trainers, res.data]);
       }
       resetForm();
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError('Failed to save trainer');
     }
@@ -54,6 +56,7 @@ function AdminTrainers() {
       try {
         await deleteTrainer(trainerId);
         setTrainers(trainers.filter(t => t._id !== trainerId));
+      // eslint-disable-next-line no-unused-vars
       } catch (err) {
         setError('Failed to delete trainer');
       }

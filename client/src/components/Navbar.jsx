@@ -1,17 +1,17 @@
-import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import { useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
 function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, handleLogout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { user, handleLogout } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const onLogout = () => {
-    handleLogout();
-    navigate('/');
-    setMobileMenuOpen(false);
-  };
+    handleLogout()
+    navigate('/')
+    setMobileMenuOpen(false)
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-black/80 backdrop-blur-md z-50 border-b border-gray-700">
@@ -27,6 +27,9 @@ function Navbar() {
             <Link to="/trainers" className="text-white hover:text-orange-500 transition-colors">Trainers</Link>
             <Link to="/pricing" className="text-white hover:text-orange-500 transition-colors">Pricing</Link>
             <Link to="/contact" className="text-white hover:text-orange-500 transition-colors">Contact</Link>
+            {user?.role === 'admin' && (
+              <Link to="/admin" className="text-orange-400 hover:text-orange-300 font-semibold transition-colors">Admin</Link>
+            )}
           </div>
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
@@ -64,6 +67,9 @@ function Navbar() {
               <Link to="/trainers" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-white">Trainers</Link>
               <Link to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-white">Pricing</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-white">Contact</Link>
+              {user?.role === 'admin' && (
+                <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 text-orange-400 font-semibold">Admin Dashboard</Link>
+              )}
               <div className="border-t border-gray-700 pt-2 mt-2">
                 {user ? (
                   <>
@@ -86,7 +92,7 @@ function Navbar() {
         )}
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -9,6 +9,11 @@ import Pricing from './pages/Pricing'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import AdminDashboard from './pages/AdminDashboard'
+import AdminUsers from './pages/AdminUsers'
+import AdminTrainers from './pages/AdminTrainers'
+import AdminContacts from './pages/AdminContacts'
+import AdminMemberships from './pages/AdminMemberships'
 
 function App() {
   return (
@@ -24,6 +29,11 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/trainers" element={<AdminTrainers />} />
+          <Route path="/admin/contacts" element={<AdminContacts />} />
+          <Route path="/admin/memberships" element={<AdminMemberships />} />
         </Routes>
         <Footer />
       </div>
