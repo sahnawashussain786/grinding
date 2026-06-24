@@ -7,6 +7,8 @@ import Services from './pages/Services'
 import Trainers from './pages/Trainers'
 import Pricing from './pages/Pricing'
 import Contact from './pages/Contact'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/trainers" element={<Trainers />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />
       </div>
